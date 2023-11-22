@@ -1,6 +1,6 @@
 //Name: Neidy Malaga & Vivian Huynh
 //Date: 11/22/2023
-//Description: Header file for class SearchingDynamicArray
+//Description: Header file for class template SearchingDynamicArray
 
 #pragma once
 #include <iostream>  //For ostream
