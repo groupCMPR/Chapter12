@@ -6,7 +6,7 @@
 #include <iostream>  //For ostream
 #include <vector>    //For vectors
 #include <algorithm> //For sort
-#include <cstdlib>   //For srand
+#include <random>
 #include <string>    //For to_string
 using namespace std;
 
@@ -25,13 +25,14 @@ public:
 	T getElement(char) const; //NOT DONE, binary serial searches
 
 	//MUTATORS
-	void fillArray(int);
+	void set_Elements(const size_t& size) ;
 	void sortArray();
 	void pushElement(const T&);
 	void setClear();
 
 	//FRIEND
-	friend ostream& operator <<<>(ostream&, const SearchingDynamicArray<T>&);
+	template <class T>
+	friend ostream& operator <<(ostream&, const SearchingDynamicArray<T>&);
 };
 
 #include "SearchingDynamicArray.template"
