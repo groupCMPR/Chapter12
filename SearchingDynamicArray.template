@@ -1,3 +1,7 @@
+//Name: Neidy Malaga & Vivian Huynh
+//Date: 11/22/2023
+//Description: template file for class template SearchingDynamicArray
+
 template <class T>
 SearchingDynamicArray<T>::SearchingDynamicArray()
 {}
