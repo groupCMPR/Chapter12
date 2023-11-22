@@ -37,15 +37,17 @@ T SearchingDynamicArray<T>::getElement(char search) const
 //Precondition : Return a positive integer value for the size of array
 //Postcondition: Fill the array with random strings
 template <class T>
-void SearchingDynamicArray<T>::fillArray(int size)
+void SearchingDynamicArray<T>::set_Elements(const size_t& size)
 {
-	srand(time(0));
-	int number = 0;
-	for (int i = 0; i < size; i++)
-	{
-		number = rand() % 10 + 1;
-		myVector.push_back("str#" + to_string(number));
-	}
+	Search_Vector.clear();
+	Search_Vector.reserve(size);
+
+	random_device develop;
+	mt19937 rng(develop());
+	uniform_int_distribution<int> range(0, 100);
+
+	for (int i = 0; i < size; ++i) 
+		Search_Vector.push_back("str#" + to_string(range(rng)));
 }
 //Precondition : Dynamic array is not empty
 //Postcondition: Sort the array
