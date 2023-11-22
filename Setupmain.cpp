@@ -64,7 +64,7 @@ void option1()
         system("cls");
         cout << "\n\t1> Searching unsorted dynamic arrays";
         cout << "\n\t" << string(100, char(205));
-        cout << "\n\t\tA> Read data file and store into the array";
+        cout << "\n\t\tA> Randomly generate a list of data and store into the dynamic array";
         cout << "\n\t\tB> Add an element to the dynamic array";
         cout << "\n\t\tC> Display elements from the array";
         cout << "\n\t\tD> Search for an element from the array";
@@ -97,7 +97,7 @@ void option2()
         system("cls");
         cout << "\n\t2> Searching sorted dynamic arrays";
         cout << "\n\t" << string(100, char(205));
-        cout << "\n\t\tA> Read data file and store into the array";
+        cout << "\n\t\tA> Randomly generate a list of data and store into the dynamic array"";
         cout << "\n\t\tB> Add an element to the dynamic array";
         cout << "\n\t\tC> Display elements from the array";
         cout << "\n\t\tD> Search for an element from the array";
