@@ -3,7 +3,6 @@
 //Description: Chapter 12 Assignment - Searching and Hashing
 
 #include <iostream> //For cout
-#include <vector>   //For vectors
 
 //HEADER FILES
 #include "input.h" //For input validation
