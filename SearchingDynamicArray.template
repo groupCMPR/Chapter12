@@ -2,23 +2,40 @@
 //Date: 11/22/2023
 //Description: template file for class template SearchingDynamicArray
 
+//Precondition : N/A
+//Postcondition: N/A
 template <class T>
 SearchingDynamicArray<T>::SearchingDynamicArray()
 {}
 
-//ACCESSORS
+//-----------------------------------------------------------
+//
+//						ACCESSORS
+//
+//-----------------------------------------------------------
+//Precondition : N/A
+//Postcondition: Return TRUE if dynamic array is empty
+//				 Return FALSE if dynamic array is not empty
 template <class T>
 bool SearchingDynamicArray<T>::isEmpty() const
 {
 	return myVector.empty();
 }
+//Precondition : Pass in 'B' for binary search or 'S' for serial search
+//Postcondition: Return the searched element
 template <class T>
 T SearchingDynamicArray<T>::getElement(char search) const
 {
 	return 0; //temp return 
 }
 
-//MUTATORS
+//-----------------------------------------------------------
+//
+//						MUTATORS
+//
+//-----------------------------------------------------------
+//Precondition : Return a positive integer value for the size of array
+//Postcondition: Fill the array with random strings
 template <class T>
 void SearchingDynamicArray<T>::fillArray(int size)
 {
@@ -30,22 +47,29 @@ void SearchingDynamicArray<T>::fillArray(int size)
 		myVector.push_back("str#" + to_string(number));
 	}
 }
+//Precondition : Dynamic array is not empty
+//Postcondition: Sort the array
 template <class T>
 void SearchingDynamicArray<T>::sortArray()
 {
 	sort(myVector.begin(), myVector.end());
 }
+//Precondition : Passing in valid template data
+//Postcondition: Push the data into the back of the array
 template <class T>
 void SearchingDynamicArray<T>::pushElement(const T& data)
 {
 	myVector.push_back(data);
 }
+//Precondition : Dynamic array is not empty
+//Postcondition: Clear/Delete all the elements in the array
 template <class T>
 void SearchingDynamicArray<T>::setClear()
 {
 	myVector.clear();
 }
-
+//Precondition : Dynamic array is not empty, Passing in the ostream and obj
+//Postcondition: Display all the values in the array
 template<class T>
 ostream& operator <<(ostream& out, const SearchingDynamicArray<T>& obj)
 {
