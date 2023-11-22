@@ -1,4 +1,4 @@
-//Name: Vivian Huynh
+//Name: Neidy Malaga & Vivian Huynh
 //Date: 11/22/2023
 //Description: Header file for class SearchingDynamicArray
 
