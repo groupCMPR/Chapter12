@@ -7,7 +7,7 @@
 
 //HEADER FILES
 #include "input.h" //For input validation
-#include "SearchingDynamicArray.cpp" //For option 1 & 2
+#include "SearchingDynamicArray.h" //For option 1 & 2
 
 using namespace std;
 
