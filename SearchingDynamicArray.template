@@ -21,12 +21,35 @@ bool SearchingDynamicArray<T>::isEmpty() const
 {
 	return myVector.empty();
 }
+//Precondition : N/A
+//Postcondition: Return size of dynamic array
+template <class T>
+int SearchingDynamicArray<T>::getSize() const
+{
+	return myVector.size();
+}
 //Precondition : Pass in 'B' for binary search or 'S' for serial search
+//				 Passing in valid template data
+//				 Passing in the size
 //Postcondition: Return the searched element
 template <class T>
-T SearchingDynamicArray<T>::getElement(char search) const
+int SearchingDynamicArray<T>::getElement(char search, const T& data, int size) const
 {
-	return 0; //temp return 
+	if (search == 'S')
+	{
+		if (size != 0)
+		{
+			if (myVector[size - 1] != data)
+			{
+				return getElement(search, data, size - 1);
+			}
+		}
+		return (size - 1);
+	}
+	else if (search == 'B')
+	{
+
+	}
 }
 
 //-----------------------------------------------------------
@@ -37,17 +60,15 @@ T SearchingDynamicArray<T>::getElement(char search) const
 //Precondition : Return a positive integer value for the size of array
 //Postcondition: Fill the array with random strings
 template <class T>
-void SearchingDynamicArray<T>::set_Elements(const size_t& size)
+void SearchingDynamicArray<T>::fillArray(int size)
 {
-	Search_Vector.clear();
-	Search_Vector.reserve(size);
-
-	random_device develop;
-	mt19937 rng(develop());
-	uniform_int_distribution<int> range(0, 100);
-
-	for (int i = 0; i < size; ++i) 
-		Search_Vector.push_back("str#" + to_string(range(rng)));
+	srand(time(0));
+	int number = 0;
+	for (int i = 0; i < size; i++)
+	{
+		number = rand() % 100 + 1;
+		myVector.push_back("str#" + to_string(number));
+	}
 }
 //Precondition : Dynamic array is not empty
 //Postcondition: Sort the array
