@@ -26,7 +26,9 @@ public:
 	int getElement(char, const T&, int) const; //NOT DONE, binary serial searches
 
 	//MUTATORS
-	void fillArray(int);
+	void fillArray(const size_t&);
+	int serial_search(const T&, size_t) {
+	int binary_search(const T&, size_t, size_t);
 	void sortArray();
 	void pushElement(const T&);
 	void setClear();
