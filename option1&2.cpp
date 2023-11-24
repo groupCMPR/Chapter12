@@ -3,7 +3,6 @@
 //Description: Chapter 12 Assignment - Searching and Hashing
 
 #include <iostream> //For cout
-#include <vector>   //For vectors
 
 //HEADER FILES
 #include "input.h" //For input validation
@@ -61,8 +60,7 @@ int menuOption()
 //Postcondition: Add, display, and search unsorted dynamic arrays
 void option1()
 {
-    SearchingDynamicArray<string> unsortedArray;
-    int size = 0;
+    SearchingDynamicArray<string> unsorted_vector;
 
     do
     {
@@ -83,36 +81,35 @@ void option1()
         case '0': return;
         case 'A':
         {
-            size = inputInteger("\n\t\tEnter the size of the dynamic array: ", true);
-            unsortedArray.fillArray(size);
+            unsorted_vector.fillArray(inputInteger("\n\t\tEnter the size of the dynamic array: ", true));
             cout << "\n\t\tRandom elements have been populated into the array.\n";
         }break;
         case 'B':
         {
-            string data = "";
-            data = inputString("\n\t\tEnter a string element: ", true);
-            unsortedArray.pushElement(data);
+            string data = inputString("\n\t\tEnter a string element: ", true);
+            unsorted_vector.pushElement(data);
             cout << "\n\t\tElement \"" << data << "\" has been added to the array.\n";
         }break;
         case 'C':
         {
-            if (unsortedArray.isEmpty())
+            if (unsorted_vector.isEmpty())
             {
                 cout << "\n\t\tThe array is empty.\n";
                 break;
             }
-            cout << unsortedArray << '\n';
+            cout << unsorted_vector << '\n';
         }break;
         case 'D':
         {
-            if (unsortedArray.isEmpty())
+            if (unsorted_vector.isEmpty())
             {
                 cout << "\n\t\tThe array is empty.\n";
                 break;
             }
+
+            int size = -1;
             string data = "";
-            char searchType;
-            searchType = inputChar("\n\t\tChoose search type (S)Serial or (B)Binary: ", static_cast<string>("SB"));
+            char searchType = inputChar("\n\t\tChoose search type (S)Serial or (B)Binary: ", static_cast<string>("SB"));
 
             if (searchType == 'S')
             {
@@ -120,21 +117,24 @@ void option1()
                 cout << "\n\t\t" << string(20, char(196));
                 data = inputString("\n\t\tEnter a string element to search: ", true);
 
-                size = unsortedArray.getElement(searchType, data, unsortedArray.getSize());
-                if (size == -1)
-                {
-                    cout << "\n\t\t\"" << data << "\" is not found in the unsorted array.\n";
-                }
-                else
-                {
-                    cout << "\n\t\t\"" << data << "\" is found at index " << size + 1 << " from the unsorted array.\n";
-                }
+                size = unsorted_vector.serial_search(data, 0);
             }
-            //NOT DONE YET, binary serial searches
+            else {
+                cout << "\n\t\tRecursive binary search";
+                cout << "\n\t\t" << string(20, char(196));
+                data = inputString("\n\t\tEnter a string element to search: ", true);
+
+                size = unsorted_vector.binary_search(data, 0, unsorted_vector.getSize());
+            }
+
+            if (size == -1)
+                cout << "\n\t\t\"" << data << "\" is not found in the unsorted array.\n";
+            else
+                cout << "\n\t\t\"" << data << "\" is found at index " << size << " from the unsorted array.\n";
         }break;
         case 'E':
         {
-            unsortedArray.setClear();
+            unsorted_vector.setClear();
             cout << "\n\t\t Elements from the array have been cleared/deleted.\n";
         }break;
         default: cout << "\t\tERROR: - Invalid option. Please re-enter."; break;
@@ -149,7 +149,6 @@ void option1()
 void option2()
 {
     SearchingDynamicArray<string> sortedArray;
-    int size = 0;
 
     do
     {
@@ -170,14 +169,12 @@ void option2()
         case '0': return;
         case 'A':
         {
-            size = inputInteger("\n\t\tEnter the size of the dynamic array: ", true);
-            sortedArray.fillArray(size);
+            sortedArray.fillArray(inputInteger("\n\t\tEnter the size of the dynamic array: ", true));
             cout << "\n\t\tRandom elements have been populated into the array.\n";
         }break;
         case 'B':
         {
-            string data = "";
-            data = inputString("\n\t\tEnter a string element: ", true);
+            string data = inputString("\n\t\tEnter a string element: ", true);
             sortedArray.pushElement(data);
             sortedArray.sortArray();
             cout << "\n\t\tElement \"" << data << "\" has been added to the array.\n";
@@ -198,9 +195,10 @@ void option2()
                 cout << "\n\t\tThe array is empty.\n";
                 break;
             }
+
+            int size = -1;
             string data = "";
-            char searchType;
-            searchType = inputChar("\n\t\tChoose search type (S)Serial or (B)Binary: ", static_cast<string>("SB"));
+            char searchType = inputChar("\n\t\tChoose search type (S)Serial or (B)Binary: ", static_cast<string>("SB"));
 
             if (searchType == 'S')
             {
@@ -208,17 +206,20 @@ void option2()
                 cout << "\n\t\t" << string(20, char(196));
                 data = inputString("\n\t\tEnter a string element to search: ", true);
 
-                size = sortedArray.getElement(searchType, data, sortedArray.getSize());
-                if (size == -1)
-                {
-                    cout << "\n\t\t\"" << data << "\" is not found in the unsorted array.\n";
-                }
-                else
-                {
-                    cout << "\n\t\t\"" << data << "\" is found at index " << size + 1 << " from the unsorted array.\n";
-                }
+                size = sortedArray.serial_search(data, 0);
             }
-            //NOT DONE YET, binary serial searches
+            else {
+                cout << "\n\t\tRecursive binary search";
+                cout << "\n\t\t" << string(20, char(196));
+                data = inputString("\n\t\tEnter a string element to search: ", true);
+
+                size = sortedArray.binary_search(data, 0, sortedArray.getSize());
+            }
+
+            if (size == -1)
+                cout << "\n\t\t\"" << data << "\" is not found in the sorted array.\n";
+            else
+                cout << "\n\t\t\"" << data << "\" is found at index " << size << " from the sorted array.\n";
         }break;
         case 'E':
         {
