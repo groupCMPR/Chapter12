@@ -23,18 +23,18 @@ public:
 	//ACCESSORS
 	bool isEmpty() const;
 	int getSize() const;
-	int getElement(char, const T&, int) const; //NOT DONE, binary serial searches
+	int serial_search(const T&, size_t) const;
+	int binary_search(const T&, size_t, size_t) const;
 
 	//MUTATORS
 	void fillArray(const size_t&);
-	int serial_search(const T&, size_t) {
-	int binary_search(const T&, size_t, size_t);
 	void sortArray();
 	void pushElement(const T&);
 	void setClear();
 
 	//FRIEND
-	friend ostream& operator <<<>(ostream&, const SearchingDynamicArray<T>&);
+	template <class T>
+	friend ostream& operator <<(ostream&, const SearchingDynamicArray<T>&);
 };
 
 #include "SearchingDynamicArray.template"
