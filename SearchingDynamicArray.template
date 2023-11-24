@@ -28,55 +28,10 @@ int SearchingDynamicArray<T>::getSize() const
 {
 	return myVector.size();
 }
-//Precondition : Pass in 'B' for binary search or 'S' for serial search
-//				 Passing in valid template data
-//				 Passing in the size
-//Postcondition: Return the searched element
-template <class T>
-int SearchingDynamicArray<T>::getElement(char search, const T& data, int size) const
-{
-	if (search == 'S')
-	{
-		if (size != 0)
-		{
-			if (myVector[size - 1] != data)
-			{
-				return getElement(search, data, size - 1);
-			}
-		}
-		return (size - 1);
-	}
-	else if (search == 'B')
-	{
-
-	}
-}
-
-//-----------------------------------------------------------
-//
-//						MUTATORS
-//
-//-----------------------------------------------------------
-//Precondition : parameter positive size_t value for the size of array
-//Postcondition: Fill the array with random strings
-template <class T>
-void SearchingDynamicArray<T>::fillArray(const size_t& size)
-{
-	myVector.clear();
-	myVector.reserve(size);
-	
-	random_device develop;
-	mt19937 rng(develop());
-	uniform_int_distribution<int> range(0, 20);
-	
-	for (int i = 0; i < size; ++i)
-		myVector.push_back("str#" + to_string(range(rng)));
-}
-
 //precondition: same data type T target, position must be a positive
 //postcondition: searches through all elements and returns the position, or -1 if not found
 template <class T>
-int SearchingDynamicArray<T>::serial_search(const T& target, size_t position) {
+int SearchingDynamicArray<T>::serial_search(const T& target, size_t position) const{
 	//stop cases
 	if (position == myVector.size())
 		return -1;
@@ -87,11 +42,10 @@ int SearchingDynamicArray<T>::serial_search(const T& target, size_t position) {
 	//increment to go to next number
 	return serial_search(target, position + 1);
 }
-
 //precondition: same data set T target, begin must be 0, end is the size(), both must be positive
 //postcondition: uses binary search to find location, or if not found -1
 template <class T>
-int SearchingDynamicArray<T>::binary_search(const T& target, size_t begin, size_t end) {
+int SearchingDynamicArray<T>::binary_search(const T& target, size_t begin, size_t end) const{
 	//finds middle
 	size_t midpoint = (begin + end) / 2;
 
@@ -121,6 +75,27 @@ int SearchingDynamicArray<T>::binary_search(const T& target, size_t begin, size_
 
 }
 
+
+//-----------------------------------------------------------
+//
+//						MUTATORS
+//
+//-----------------------------------------------------------
+//Precondition : parameter positive size_t value for the size of array
+//Postcondition: Fill the array with random strings
+template <class T>
+void SearchingDynamicArray<T>::fillArray(const size_t& size)
+{
+	myVector.clear();
+	myVector.reserve(size);
+	
+	random_device develop;
+	mt19937 rng(develop());
+	uniform_int_distribution<int> range(0, 20);
+	
+	for (int i = 0; i < size; ++i)
+		myVector.push_back("str#" + to_string(range(rng)));
+}
 //Precondition : Dynamic array is not empty
 //Postcondition: Sort the array
 template <class T>
