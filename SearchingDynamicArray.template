@@ -57,19 +57,70 @@ int SearchingDynamicArray<T>::getElement(char search, const T& data, int size) c
 //						MUTATORS
 //
 //-----------------------------------------------------------
-//Precondition : Return a positive integer value for the size of array
+//Precondition : parameter positive size_t value for the size of array
 //Postcondition: Fill the array with random strings
 template <class T>
-void SearchingDynamicArray<T>::fillArray(int size)
+void SearchingDynamicArray<T>::fillArray(const size_t& size)
 {
-	srand(time(0));
-	int number = 0;
-	for (int i = 0; i < size; i++)
-	{
-		number = rand() % 100 + 1;
-		myVector.push_back("str#" + to_string(number));
-	}
+	myVector.clear();
+	myVector.reserve(size);
+	
+	random_device develop;
+	mt19937 rng(develop());
+	uniform_int_distribution<int> range(0, 20);
+	
+	for (int i = 0; i < size; ++i)
+		myVector.push_back("str#" + to_string(range(rng)));
 }
+
+//precondition: same data type T target, position must be a positive
+//postcondition: searches through all elements and returns the position, or -1 if not found
+template <class T>
+int SearchingDynamicArray<T>::serial_search(const T& target, size_t position) {
+	//stop cases
+	if (position == myVector.size())
+		return -1;
+
+	if (target == myVector[position])
+		return position;
+
+	//increment to go to next number
+	return serial_search(target, position + 1);
+}
+
+//precondition: same data set T target, begin must be 0, end is the size(), both must be positive
+//postcondition: uses binary search to find location, or if not found -1
+template <class T>
+int SearchingDynamicArray<T>::binary_search(const T& target, size_t begin, size_t end) {
+	//finds middle
+	size_t midpoint = (begin + end) / 2;
+
+	//stop cases
+
+	//if it has reached the end of the right side or left side, stop 
+	//since midpoint is size_t a negative is greater
+	if (midpoint >= end)
+		return -1;
+
+	//position has been found
+	if (target == myVector[midpoint])
+		return midpoint;
+
+
+
+	// it will initially split from start to midpoint or midpoint to end
+	// if greater than middle, goes to the right half to end, - target, move once to the right, end
+	//if less than, goes to beginning to left half - target,begin, midpoint (as it is smaller than that position)
+	if (target > myVector[midpoint]) {
+		return binary_search(target, midpoint + 1, end);
+
+	}
+	else {
+		return binary_search(target, begin, midpoint);
+	}
+
+}
+
 //Precondition : Dynamic array is not empty
 //Postcondition: Sort the array
 template <class T>
@@ -77,6 +128,7 @@ void SearchingDynamicArray<T>::sortArray()
 {
 	sort(myVector.begin(), myVector.end());
 }
+
 //Precondition : Passing in valid template data
 //Postcondition: Push the data into the back of the array
 template <class T>
@@ -84,6 +136,7 @@ void SearchingDynamicArray<T>::pushElement(const T& data)
 {
 	myVector.push_back(data);
 }
+
 //Precondition : Dynamic array is not empty
 //Postcondition: Clear/Delete all the elements in the array
 template <class T>
@@ -91,6 +144,8 @@ void SearchingDynamicArray<T>::setClear()
 {
 	myVector.clear();
 }
+
+
 //Precondition : Dynamic array is not empty, Passing in the ostream and obj
 //Postcondition: Display all the values in the array
 template<class T>
