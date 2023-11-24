@@ -6,7 +6,7 @@
 #include <iostream>  //For ostream
 #include <vector>    //For vectors
 #include <algorithm> //For sort
-#include <cstdlib>   //For srand
+#include <random>
 #include <string>    //For to_string
 using namespace std;
 
