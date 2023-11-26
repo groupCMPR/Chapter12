@@ -55,7 +55,7 @@ public:
 
     void insert(const studentInfo& student) {
         if (numElements >= 40) {
-            cout << "ERROR: Hash table is full. Cannot insert new student." << endl;
+            cout << "\n\tERROR: Hash table is full. Cannot insert new student.";
             return;
         }
 
