@@ -107,7 +107,7 @@ public:
             index = (index + 1) % tableSize;
         } while (index != originalIndex);
 
-        cout << "\n\tStudent ID " << id << " not found." << endl;
+        cout << "\n\tStudent ID " << id << " not found.";
     }
 
     bool remove(int id) {
@@ -118,7 +118,7 @@ public:
             if (hashTable[index].isOccupied && hashTable[index].id == id) {
                 hashTable[index].isOccupied = false;
                 numElements--;
-                cout << "\n\tStudent record index #" << index << " with ID: " << id << " has been removed." << endl;
+                cout << "\n\tStudent record index #" << index << " with ID: " << id << " has been removed.";
                 return true;
             }
             else if (!hashTable[index].isPreviouslyOccupied) {
@@ -128,7 +128,7 @@ public:
             index = (index + 1) % tableSize;
         } while (index != originalIndex);
 
-        cout << "\n\tStudent ID " << id << " not found." << endl;
+        cout << "\n\tStudent ID " << id << " not found.";
         return false;
     }
 
