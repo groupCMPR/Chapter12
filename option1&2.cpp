@@ -170,6 +170,7 @@ void option2()
         case 'A':
         {
             sortedArray.fillArray(inputInteger("\n\t\tEnter the size of the dynamic array: ", true));
+            sortedArray.sortArray();
             cout << "\n\t\tRandom elements have been populated into the array.\n";
         }break;
         case 'B':
