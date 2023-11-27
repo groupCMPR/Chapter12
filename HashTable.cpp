@@ -4,34 +4,20 @@
 
 #include "HashTable.h"
 
+//default constructor
 Student::Student() {
     numElements = 0;
     tableSize = 40;  
     hashTable.resize(tableSize);
 }
-
+//PreCondition: accepts and integer value
+//PostCondition: hashes that value based on table size
 int Student::hashFunction(int id) {
     return id % tableSize;
 }
 
-void Student::resizeHashTable() {
-    int oldTableSize = tableSize;
-    tableSize *= 2;
-    vector<studentInfo> newHashTable(tableSize);
-
-    for (int i = 0; i < oldTableSize; i++) {
-        if (hashTable[i].isOccupied) {
-            int newIndex = hashFunction(hashTable[i].id);
-            while (newHashTable[newIndex].isOccupied) {
-                newIndex = (newIndex + 1) % tableSize;
-            }
-            newHashTable[newIndex] = hashTable[i];
-        }
-    }
-
-    hashTable = newHashTable;
-}
-
+//PreCondition: accepts a string and an integer value
+//PostCondition: reads and parses the data file
 void Student::readDataFile(const string& fileName, int numRecords) {
     ifstream file(fileName);
 string line;
@@ -55,7 +41,8 @@ while (getline(file, line) && numElements < numRecords) {
     insert(student);
     }
 }
-
+//PreCondition: accepts a student obj
+//PostCondition: inserts into hashtable
 void Student::insert(const studentInfo& student) {
    if (numElements >= tableSize) {
     cout << "\n\tERROR: Hash table is full. Cannot insert new student.";
@@ -78,7 +65,8 @@ hashTable[index].isOccupied = true;
 hashTable[index].isPreviouslyOccupied = true;
 numElements++;
 }
-
+//PreCondition: accepts an integer value
+//PostCondition: searches for that value in the hashtable
 bool Student::search(int id){
     int index = hashFunction(id);
     int originalIndex = index;
@@ -96,7 +84,8 @@ bool Student::search(int id){
 
     return false;
 }
-
+//PreCondition: accepts an integer value 
+//PostCondition: returns student Info associated with that value (index)
 void Student::getStudentInfo(int id) {
     int index = hashFunction(id);
     int originalIndex = index;
@@ -120,7 +109,8 @@ void Student::getStudentInfo(int id) {
 
     cout << "\n\tStudent ID " << id << " not found.";
 }
-
+//PreCondition: accepts an integer value
+//PostCondition: removes an entry from hashtable 
 bool Student::remove(int id){
     int index = hashFunction(id);
     int originalIndex = index;
@@ -142,7 +132,8 @@ bool Student::remove(int id){
     cout << "\n\tStudent ID " << id << " not found.";
     return false;
 }
-
+//PreCondition: None 
+//PostCondition: displays the table
 void Student::display() const{
     for (int i = 0; i < tableSize; ++i) {
         if (hashTable[i].isOccupied) {
