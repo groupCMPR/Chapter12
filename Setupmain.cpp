@@ -246,76 +246,70 @@ void option2()
 //Precondition : Calls from main
 //Postcondition: Search, insert, and remove element into dynamic array with hashing
 void option3() {
-    Student table;
-    do
-    {
+Student table;
+do
+{
 
-        system("cls");
-        cout << "\n\t3> Application using hashing";
-        cout << "\n\t" << string(100, char(205));
-        cout << "\n\t\tA> Read data file, hash and insert into the dynamic array";
-        cout << "\n\t\tB> Search an element from the dynamic array";
-        cout << "\n\t\tC> Insert an element into the dynamic array";
-        cout << "\n\t\tD> Remove an element from the dynamic array";
-        cout << "\n\t\tE> Display all records from the array";
-        cout << "\n\t" << string(100, char(196));
-        cout << "\n\t\t0> return";
-        cout << "\n\t" << string(100, char(205));
+	system("cls");
+	cout << "\n\t3> Application using hashing";
+	cout << "\n\t" << string(100, char(205));
+	cout << "\n\t\tA> Read data file, hash and insert into the dynamic array";
+	cout << "\n\t\tB> Search an element from the dynamic array";
+	cout << "\n\t\tC> Insert an element into the dynamic array";
+	cout << "\n\t\tD> Remove an element from the dynamic array";
+	cout << "\n\t\tE> Display all records from the array";
+	cout << "\n\t" << string(100, char(196));
+	cout << "\n\t\t0> return";
+	cout << "\n\t" << string(100, char(205));
 
-        switch (inputChar("\n\t\tOption: ", static_cast<string>("0ABCDE")))
-        {
-        case '0': return;
-        case 'A': {
-            int num = inputInteger("\n\tEnter the number of records: ", 1, 40);
+	switch (inputChar("\n\t\tOption: ", static_cast<string>("0ABCDE")))
+	{
+	case '0': return;
+	case 'A': {
+		int num = inputInteger("\n\tEnter the number of records: ", 1, 40);
 
-            table.readDataFile("Students.dat", num);
+		table.readDataFile("Students.dat", num);
 
-            cout << "\n\t" << num << " records have been inserted.";
-            table.display();
-            break;
-        }
-        case 'B': {
-            int search = inputInteger("\n\tEnter a student ID to search: ");
-            if (table.search(search)) {
-                table.getStudentInfo(search);
-                break;
-            }
-            else {
-                cout << "\n\tStudent record not found.";
-                break;
-            }
-            break;
-        }
-        case 'C': {
-            studentInfo newStudent;
-            newStudent.id = inputInteger("\n\tEnter a new student ID: ");
-            if (table.search(newStudent.id)) {
-                cout << "\n\tAlready in table";
-                break;
-            }
-            newStudent.name = inputString("\n\tEnter the student's name: ", true);
-            newStudent.major = inputString("\n\tEnter the student's major: ", true);
-            newStudent.gpa = inputDouble("\n\tEnter a student's GPA (1.0..4.0): ", 1.0, 4.0);
-            newStudent.isOccupied = true;
-            newStudent.isPreviouslyOccupied = true;
+		cout << "\n\t" << num << " records have been inserted.";
 
-            table.insert(newStudent);
-            cout << "\n\tInserted the new record.";
-            table.display();
-            break;
-        }
-        case 'D': {
-            int toRemove = inputInteger("\n\tEnter a student ID to remove: ");
-            table.remove(toRemove);
-            table.display();
-            break;
-        }
-        case 'E':
-            table.display();
-            break;
-        default: cout << "\t\tERROR: - Invalid option. Please re-enter."; break;
-        }
-        cout << "\n";
-        system("pause");
-    } while (true);
+		break;
+	}
+	case 'B': {
+		int search = inputInteger("\n\tEnter a student ID to search: ");
+
+		table.getStudentInfo(search);
+
+
+		break;
+	}
+	case 'C': {
+		studentInfo newStudent;
+		newStudent.id = inputInteger("\n\tEnter a new student ID: ");
+		if (table.search(newStudent.id)) {
+			cout << "\n\tERROR: ID has already inserted.";
+			break;
+		}
+		newStudent.name = inputString("\n\tEnter the student's name: ", true);
+		newStudent.major = inputString("\n\tEnter the student's major: ", true);
+		newStudent.gpa = inputDouble("\n\tEnter a student's GPA (1.0..4.0): ", 1.0, 4.0);
+		newStudent.isOccupied = true;
+		newStudent.isPreviouslyOccupied = true;
+
+		table.insert(newStudent);
+		cout << "\n\tInserted the new record.";
+		break;
+	}
+	case 'D': {
+		table.remove(inputInteger("\n\tEnter a student ID to remove: "));
+		break;
+	}
+	case 'E':
+		cout << "\n\tRecord(s) found:";
+		table.display();
+		break;
+	default: cout << "\t\tERROR: - Invalid option. Please re-enter."; break;
+	}
+	cout << "\n";
+	system("pause");
+} while (true);
 }
