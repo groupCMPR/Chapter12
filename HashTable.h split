@@ -26,6 +26,7 @@ private:
     int numElements;
 
     int hashFunction(int id);
+    void resizeHashTable();
 public:
     Student();
 
