@@ -16,7 +16,7 @@
 //HEADER FILES
 #include "input.h" //For input validation
 #include "SearchingDynamicArray.h" //For option 1 & 2
-#include "HashTable.h"
+#include "HashTable.h" //For option 3
 using namespace std;
 
 //PROTOTYPES
@@ -245,7 +245,7 @@ void option2()
 
 //Precondition : Calls from main
 //Postcondition: Search, insert, and remove element into dynamic array with hashing
-void option3(){
+void option3() {
     Student table;
     do
     {
