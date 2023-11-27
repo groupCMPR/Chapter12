@@ -1,3 +1,7 @@
+//Name: Alexis Martinez and John Kim
+//Date: 11/26/2023
+//Description: cpp file for class HashTable
+
 #include "HashTable.h"
 
 Student::Student() {
