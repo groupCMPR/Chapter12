@@ -10,6 +10,7 @@
 #include <string>   //For string
 using namespace std;
 
+//struct to parse student info
 struct studentInfo {
     int id;
     string name;
@@ -21,19 +22,22 @@ struct studentInfo {
 
 class Student {
 private:
+    //to hold data after hashing
     vector<studentInfo> hashTable;
+    //for the size of the total amount of records permitted
     int tableSize;
+    //to keep track if full or not 
     int numElements;
-
+    //to hash and modify table as needed
     int hashFunction(int id);
     void resizeHashTable();
 public:
+    //default constructor
     Student();
-
+    // public members
     void readDataFile(const string& fileName, int numRecords);
 
     void insert(const studentInfo& student);
-
 
     bool search(int id);
 
