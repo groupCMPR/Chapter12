@@ -30,7 +30,6 @@ private:
     int numElements;
     //to hash and modify table as needed
     int hashFunction(int id);
-    void resizeHashTable();
 public:
     //default constructor
     Student();
