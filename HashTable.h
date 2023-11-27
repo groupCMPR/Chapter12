@@ -1,13 +1,9 @@
-//Name: Alexis Martinez and John Kim
-//Date: 11/26/2023
-//Description: Header file for class HashTable
-
 #pragma once
-#include <iostream> //For cout
-#include <vector>   //For vector
-#include <sstream>  //For stringstream
-#include <fstream>  //For file
-#include <string>   //For string
+#include <iostream> 
+#include <vector>  
+#include <sstream>  
+#include <fstream>
+#include <string>  
 using namespace std;
 
 struct studentInfo {
