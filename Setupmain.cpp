@@ -245,7 +245,7 @@ void option2()
 
 //Precondition : Calls from main
 //Postcondition: Search, insert, and remove element into dynamic array with hashing
-void option3(){
+void option3() {
     Student table;
     do
     {
@@ -271,26 +271,20 @@ void option3(){
             table.readDataFile("Students.dat", num);
 
             cout << "\n\t" << num << " records have been inserted.";
-            table.display();
+
             break;
         }
         case 'B': {
             int search = inputInteger("\n\tEnter a student ID to search: ");
-            if (table.search(search)) {
-                table.getStudentInfo(search);
-                break;
-            }
-            else {
-                cout << "\n\tStudent record not found.";
-                break;
-            }
+
+            table.getStudentInfo(search);
             break;
         }
         case 'C': {
             studentInfo newStudent;
             newStudent.id = inputInteger("\n\tEnter a new student ID: ");
             if (table.search(newStudent.id)) {
-                cout << "\n\tAlready in table";
+                cout << "\n\tERROR: ID has already inserted.";
                 break;
             }
             newStudent.name = inputString("\n\tEnter the student's name: ", true);
@@ -299,18 +293,16 @@ void option3(){
             newStudent.isOccupied = true;
             newStudent.isPreviouslyOccupied = true;
 
-            table.set_push(newStudent);
+            table.insert(newStudent);
             cout << "\n\tInserted the new record.";
-            table.display();
             break;
         }
         case 'D': {
-            int toRemove = inputInteger("\n\tEnter a student ID to remove: ");
-            table.remove(toRemove);
-            table.display();
+            table.remove(inputInteger("\n\tEnter a student ID to remove: "));
             break;
         }
         case 'E':
+            cout << "\n\tRecord(s) found:";
             table.display();
             break;
         default: cout << "\t\tERROR: - Invalid option. Please re-enter."; break;
